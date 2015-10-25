@@ -11,9 +11,7 @@ Sometimes just called "Memory", it's a card game in which all of the cards are l
 ##Fist Brainstorm
 From go I wanted a theme for my game that not only would determine the look and character of the game but also could be something that would mimic a real world request of me by a client or digital agency. I looked to the right of my computer and saw an empty fry container from by my mid-day snack.
 
-```js
-  <div style="max-width: 500px;" id="_giphy_qZjyYDRc5wp4k"></div><script>var _giphy = _giphy || []; _giphy.push({id: "qZjyYDRc5wp4k",w: 480, h: 360});var g = document.createElement("script"); g.type = "text/javascript"; g.async = true;g.src = ("https:" == document.location.protocol ? "https://" : "http://") + "giphy.com/static/js/widgets/embed.js";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(g, s);</script>
-```
+![Fries](https://github.com/codedre/project-1/blob/master/images/fires.gif?raw=true)]
 
 McDonalds is a huge brand and there are a lot of ways the get their customers (myself included) excited by have fun games like monopoly and other contest that reward you with free food items for playing.
 
