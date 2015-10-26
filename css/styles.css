@@ -13,7 +13,7 @@ td {
   background-size: contain;
 }
 
-.flipped {
+.flipped, .matching {
   background-color: #fff;
   border-color: #ffc300;
 }
