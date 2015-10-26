@@ -7,10 +7,35 @@ $(document).ready(function() {
       defaultSquare : "images/McDonalds_golden_arch.png"
     } ;
 
+    var level = [{
+      row: 4,
+      col: 4
+    }, {
+      row: 4,
+      col: 5
+    },{
+      row: 5,
+      col: 6
+    },{
+      row: 6,
+      col: 6
+    },{
+      row: 4,
+      col: 5
+    },
+  ];
+
   //create gameboard
-  $("table").append('<tr id="row1" class="row"><td id="0"></td><td id="1"></td></tr><tr id="row2" class="row"><td id="2"></td><td id="3"></td></tr>');
+  function makeBoard(size){
+    for (var i = 0; i < size.row; i++) {
+      $("table").append('<tr id="row' + (i+1) + '"></tr>');
+      for (var j = 0; j < size.col; j++) {
+        $("#row" + i).append('<td id="' + (j+1) + '"></td>');
+      }
+    }
+  }
 
-
+  makeBoard(level[0]);
   //perform action on clicked square
   $("table").on("click", function(){
     var target = $(event.target);
