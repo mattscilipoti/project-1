@@ -22,7 +22,7 @@ console.log(gameSquares.defaultSquare);
     } else {
       console.log("not matching");
       eventsArray[0].removeClass('flipped').css("background-image", "url(" + gameSquares.defaultSquare + ")");
-      eventsArray[1].delay(5000).removeClass('flipped').css("background-image", "url(" + gameSquares.defaultSquare + ")");
+      eventsArray[1].removeClass('flipped').css("background-image", "url(" + gameSquares.defaultSquare + ")");
     }
   }
 
@@ -38,7 +38,9 @@ console.log(gameSquares.defaultSquare);
     if (events.length === 2){
       //check to see if they have a match
       console.log("I have two evnets");
-      checkForMatch(events);
+      setTimeout(function(){
+        checkForMatch(events);
+      }, 1500);
       // if (squaresMatch){
       //   $("table").off();
       // }
