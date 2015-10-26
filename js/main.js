@@ -8,6 +8,9 @@ $(document).ready(function() {
     } ;
 
     var level = [{
+      row: 2,
+      col: 2
+    },{
       row: 4,
       col: 4
     }, {
@@ -19,10 +22,7 @@ $(document).ready(function() {
     },{
       row: 6,
       col: 6
-    },{
-      row: 4,
-      col: 5
-    },
+    }
   ];
 
   //create gameboard
@@ -53,19 +53,28 @@ $(document).ready(function() {
       }, 1500);
     }
 
+    endGame();
+
   });
 
+  function endGame(){
+    var allCells = $("td");
+    if(!$("td").not(".flipped").length) {
+      alert("You win");
+      allCells.removeClass('flipped').css("background-image", "url(" + gameSquares.defaultSquare + ")");
+    }
+  }
+
   function checkSquareID(eventObject){
-    var id = $(eventObject).attr('id');
+    var id = $(eventObject).attr('id') - 1;
     return gameSquares.all[id];
   }
 
   function checkForMatch(eventsArray){
     if (eventsArray[0].css("background-image") === eventsArray[1].css("background-image")){
-      eventsArray[0].addClass('matching');
-      eventsArray[1].addClass('matching');
+      // eventsArray[0].addClass('matching');
+      // eventsArray[1].addClass('matching');
       events = [];
-      squaresMatch = !squaresMatch;
     } else {
       console.log("not matching");
       eventsArray[0].removeClass('flipped').css("background-image", "url(" + gameSquares.defaultSquare + ")");
