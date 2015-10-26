@@ -1,7 +1,9 @@
 $(document).ready(function() {
+    var seconds = 0;
+    var timer;
     var menuPath = "images/menu/";
     var events = [];
-    var squaresMatch = false;
+    var board = document.querySelector("table");
     var gameSquares = {
       all : [menuPath + "Sandwich1.png", menuPath + "Burger2.png",menuPath + "Sandwich1.png", menuPath + "Burger2.png"],
       defaultSquare : "images/McDonalds_golden_arch.png"
@@ -45,24 +47,43 @@ $(document).ready(function() {
     events.push(target);
     checkSquareID(target);
 
+
     if (events.length === 2){
-      //check to see if they have a match
-      console.log("I have two evnets");
+
       setTimeout(function(){
         checkForMatch(events);
       }, 1500);
     }
-
     endGame();
 
   });
+
+
+  board.addEventListener("click", timerClickEvent);
+
+  var updateTimer = function () {
+    $("h1").text('Game Time: ' + seconds);
+    seconds++;
+  };
+
+  function timerClickEvent(){
+    timer = setInterval(updateTimer, 1000);
+    board.removeEventListener("click", timerClickEvent);
+  }
 
   function endGame(){
     var allCells = $("td");
     if(!$("td").not(".flipped").length) {
       alert("You win");
       allCells.removeClass('flipped').css("background-image", "url(" + gameSquares.defaultSquare + ")");
+      clearInterval(timer)
+      seconds = 0;
+      $("h1").text("Game Time: 0")
+      board.addEventListener("click", timerClickEvent);
+
+
     }
+
   }
 
   function checkSquareID(eventObject){
@@ -72,9 +93,8 @@ $(document).ready(function() {
 
   function checkForMatch(eventsArray){
     if (eventsArray[0].css("background-image") === eventsArray[1].css("background-image")){
-      // eventsArray[0].addClass('matching');
-      // eventsArray[1].addClass('matching');
       events = [];
+
     } else {
       console.log("not matching");
       eventsArray[0].removeClass('flipped').css("background-image", "url(" + gameSquares.defaultSquare + ")");
