@@ -4,13 +4,36 @@ $(document).ready(function() {
     var events = [];
     var squaresMatch = false;
     var gameSquares = {
-      all : [menuPath + "Sandwich1.png", menuPath + "Burger2.png"],
+      all : [menuPath + "Sandwich1.png", menuPath + "Burger2.png",menuPath + "Sandwich1.png", menuPath + "Burger2.png"],
       defaultSquare : "images/McDonalds_golden_arch.png"
     } ;
 
-console.log(gameSquares.defaultSquare);
   //create gameboard
-  $("#gameboard").append('<table><tr id="row1" class="row"><td></td><td></td></tr><tr id="row2" class="row"><td></td><td></td></tr></table>');
+  $("table").append('<tr id="row1" class="row"><td id="0"></td><td id="1"></td></tr><tr id="row2" class="row"><td id="2"></td><td id="3"></td></tr>');
+
+
+  //perform action on clicked square
+  $("table").on("click", function(){
+    var target = $(event.target);
+    target.addClass('flipped').css('background-image', "url(" + checkSquareID(target) + ")");
+    i++;
+    events.push(target);
+    checkSquareID(target);
+
+    if (events.length === 2){
+      //check to see if they have a match
+      console.log("I have two evnets");
+      setTimeout(function(){
+        checkForMatch(events);
+      }, 1500);
+    }
+
+  });
+
+  function checkSquareID(eventObject){
+    var id = $(eventObject).attr('id');
+    return gameSquares.all[id];
+  }
 
   function checkForMatch(eventsArray){
     if (eventsArray[0].css("background-image") === eventsArray[1].css("background-image")){
@@ -26,25 +49,5 @@ console.log(gameSquares.defaultSquare);
     }
   }
 
-  //perform action on clicked square
-  $("table").on("click", function(){
-    var target = $(event.target);
 
-    target.addClass('flipped').css('background-image', "url(" + gameSquares.all[i] + ")");
-    i++;
-    events.push(target);
-    console.log(i);
-
-    if (events.length === 2){
-      //check to see if they have a match
-      console.log("I have two evnets");
-      setTimeout(function(){
-        checkForMatch(events);
-      }, 1500);
-      // if (squaresMatch){
-      //   $("table").off();
-      // }
-    }
-
-  });
 });
