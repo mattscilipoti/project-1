@@ -76,12 +76,10 @@ $(document).ready(function() {
     if(!$("td").not(".flipped").length) {
       alert("You win");
       allCells.removeClass('flipped').css("background-image", "url(" + gameSquares.defaultSquare + ")");
-      clearInterval(timer)
+      clearInterval(timer);
       seconds = 0;
-      $("h1").text("Game Time: 0")
+      $("h1").text("Game Time: 0");
       board.addEventListener("click", timerClickEvent);
-
-
     }
 
   }
