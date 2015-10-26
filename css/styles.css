@@ -1,3 +1,17 @@
-p {
-  font-size: 50px;
+table{
+  /*border-collapse: collapse;*/
+}
+
+
+td {
+  height: 140px;
+  width: 140px;
+  margin: 0;
+  padding: 0;
+  border: 5px solid grey;
+}
+
+.flipped {
+  background-color: #dd1021;
+  border-color: #ffc300;
 }
