@@ -8,7 +8,7 @@ Sometimes just called "Memory", it's a card game in which all of the cards are l
 4. As a user, I should be able to see pairs that I have matched so I do not select them again.
 5. As a user, I should be able to see when I have made my first selection so that I can make my next selection.
 
-##Fist Brainstorm
+##First Brainstorm
 From go I wanted a theme for my game that not only would determine the look and character of the game but also could be something that would mimic a real world request of me by a client or digital agency. I looked to the right of my computer and saw an empty fry container from by my mid-day snack.
 
 ![Fries](https://github.com/codedre/project-1/blob/master/images/fires.gif?raw=true)
