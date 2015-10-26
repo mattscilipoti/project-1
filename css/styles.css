@@ -9,9 +9,11 @@ td {
   margin: 0;
   padding: 0;
   border: 5px solid grey;
+  background: #dd1021 no-repeat url(../images/McDonalds_golden_arch.png) center;
+  background-size: contain;
 }
 
 .flipped {
-  background-color: #dd1021;
+  background-color: #fff;
   border-color: #ffc300;
 }
