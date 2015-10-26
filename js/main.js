@@ -27,10 +27,12 @@ $(document).ready(function() {
 
   //create gameboard
   function makeBoard(size){
+    cellID = 1;
     for (var i = 0; i < size.row; i++) {
       $("table").append('<tr id="row' + (i+1) + '"></tr>');
       for (var j = 0; j < size.col; j++) {
-        $("#row" + i).append('<td id="' + (j+1) + '"></td>');
+        $("#row" + (i+1)).append('<td id="' + cellID + '"></td>');
+        cellID++;
       }
     }
   }
