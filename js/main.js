@@ -1,6 +1,5 @@
 $(document).ready(function() {
     var menuPath = "images/menu/";
-    var i = 0;
     var events = [];
     var squaresMatch = false;
     var gameSquares = {
@@ -16,7 +15,6 @@ $(document).ready(function() {
   $("table").on("click", function(){
     var target = $(event.target);
     target.addClass('flipped').css('background-image', "url(" + checkSquareID(target) + ")");
-    i++;
     events.push(target);
     checkSquareID(target);
 
@@ -39,13 +37,13 @@ $(document).ready(function() {
     if (eventsArray[0].css("background-image") === eventsArray[1].css("background-image")){
       eventsArray[0].addClass('matching');
       eventsArray[1].addClass('matching');
-      console.log(eventsArray[0]);
-
+      events = [];
       squaresMatch = !squaresMatch;
     } else {
       console.log("not matching");
       eventsArray[0].removeClass('flipped').css("background-image", "url(" + gameSquares.defaultSquare + ")");
       eventsArray[1].removeClass('flipped').css("background-image", "url(" + gameSquares.defaultSquare + ")");
+      events = [];
     }
   }
 
