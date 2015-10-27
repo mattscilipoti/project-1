@@ -6,6 +6,7 @@ $(document).ready(function() {
     var board = document.querySelector("table");
     var gameSquares = {
       all : [],
+      shuffled : [],
       defaultSquare : "images/McDonalds_golden_arch.png"
     } ;
 
@@ -48,11 +49,7 @@ $(document).ready(function() {
     var i = 0;
     while(i < num.grid/2){
       var rand = images[Math.floor(Math.random() * images.length)];
-      if(i === 0){
-        gameSquares.all.push(rand);
-      } else {
-        compare(rand, gameSquares.all);
-      }
+      compare(rand, gameSquares.all);
       i++;
     }
   }
@@ -68,16 +65,23 @@ $(document).ready(function() {
       }
     }
     setImages(size);
+    var tempArray = gameSquares.all;
+    console.log(tempArray);
+    // console.log(gameSquares.all);
+    // console.log(gameSquares.shuffled);
+    gameSquares.shuffled = shuffle(tempArray);
+    console.log(gameSquares.shuffled);
     console.log(gameSquares.all);
   }
 
   makeBoard(level[1]);
   //perform action on clicked square
   board.addEventListener("click", timerClickEvent);
+
   $("table").on("click", function(){
     var target = $(event.target);
     target.addClass('flipped').css('background-image', "url(" + checkSquareID(target) + ")");
-    console.log(target);
+    // console.log(target);
     events.push(target);
     checkSquareID(target);
 
@@ -107,23 +111,28 @@ $(document).ready(function() {
   function endGame(){
     var allCells = $("td");
     if(!$("td").not(".flipped").length) {
-      alert("You win");
-      allCells.removeClass('flipped').css("background-image", "url(" + gameSquares.defaultSquare + ")");
-      clearInterval(timer);
-      seconds = 0;
-      $("h1").text("Game Time: 0");
-      board.addEventListener("click", timerClickEvent);
+      reset(allCells);
     }
+  }
 
+  function reset(cells){
+    alert("You win");
+    cells.removeClass('flipped').css("background-image", "url(" + gameSquares.defaultSquare + ")");
+    clearInterval(timer);
+    seconds = 0;
+    $("h1").text("Game Time: 0");
+    board.addEventListener("click", timerClickEvent);
   }
 
   function checkSquareID(eventObject){
     var id = $(eventObject).attr('id') - 1;
+    console.log(id);
     if (id < level[1].grid/2){
+      console.log(gameSquares.all[id]);
       return gameSquares.all[id];
     }else{
-      //shuffle gamesquares array
-      return gameSquares.all[id-level[1].grid/2];
+      console.log(gameSquares.shuffled[id-level[1].grid/2]);
+      return gameSquares.shuffled[id-level[1].grid/2];
     }
   }
 
@@ -138,6 +147,19 @@ $(document).ready(function() {
       events = [];
     }
   }
+
+  function shuffle(array) {
+   var j, k;
+   var temp;
+   for (j = 0; j < array.length; j++) {
+     k = Math.floor(Math.random() * array.length);
+     temp = array[j];
+     array[j] = array[k];
+     array[k] = temp;
+   }
+   console.log("I was done");
+   return array;
+}
 
 
 });
