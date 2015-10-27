@@ -66,13 +66,7 @@ $(document).ready(function() {
       }
     }
     setImages(size);
-
-    console.log(gameSquares.all);
-    console.log(gameSquares.shuffled);
     gameSquares.shuffled = shuffle(gameSquares.shuffled);
-    console.log(gameSquares.shuffled);
-    console.log(gameSquares.all);
-
   }
 
   makeBoard(level[1]);
@@ -86,12 +80,11 @@ $(document).ready(function() {
     events.push(target);
     checkSquareID(target);
 
-
     if (events.length === 2){
 
       setTimeout(function(){
         checkForMatch(events);
-      }, 1500);
+      }, 1300);
     }
     endGame();
 
@@ -127,12 +120,9 @@ $(document).ready(function() {
 
   function checkSquareID(eventObject){
     var id = $(eventObject).attr('id') - 1;
-    console.log(id);
     if (id < level[1].grid/2){
-      console.log(gameSquares.all[id]);
       return gameSquares.all[id];
     }else{
-      console.log(gameSquares.shuffled[id-level[1].grid/2]);
       return gameSquares.shuffled[id-level[1].grid/2];
     }
   }
@@ -142,7 +132,6 @@ $(document).ready(function() {
       events = [];
 
     } else {
-      console.log("not matching");
       eventsArray[0].removeClass('flipped').css("background-image", "url(" + gameSquares.defaultSquare + ")");
       eventsArray[1].removeClass('flipped').css("background-image", "url(" + gameSquares.defaultSquare + ")");
       events = [];
@@ -158,7 +147,6 @@ $(document).ready(function() {
      array[j] = array[k];
      array[k] = temp;
    }
-   console.log("I was done");
    return array;
 }
 
