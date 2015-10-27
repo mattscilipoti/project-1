@@ -1,3 +1,7 @@
+* {
+  font-family: 'Raleway', sans-serif;
+}
+
 html {
   background: url(../images/andre_background-1.png) no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -49,4 +53,20 @@ ul {
   width: 130px;
   display: block;
   font-size: 16px;
+}
+
+.button:hover {
+  box-shadow: -1px 1px 5px #f1c40f;
+  font-weight: bold;
+}
+
+.scoreBoard {
+  position: relative;
+  top: -300px;
+  float: right;
+  margin-right: 50px;
+}
+
+.scoreBoard h1 {
+  font-size: 45px;
 }
