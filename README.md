@@ -1,4 +1,4 @@
-# WDI Project 1: Concentration
+#WDI Project 1: Concentration
 Sometimes just called "Memory", it's a card game in which all of the cards are laid face down on a surface and two cards are flipped face up over each turn. If you get all the matching cards, you've won!
 
 ## User Stories
@@ -13,7 +13,7 @@ From go I wanted a theme for my game that not only would determine the look and 
 
 ![Fries](https://github.com/codedre/project-1/blob/master/images/fires.gif?raw=true)
 
-McDonalds is a huge brand and there are a lot of ways the get their customers (myself included) excited by have fun games like monopoly and other contest that reward you with free food items for playing.
+McDonalds is a huge brand and there are a lot of ways they get their customers (myself included) excited by having fun games like monopoly and other contest that reward you with free food items for playing.
 
 ###The Tie In
 
