@@ -1,6 +1,7 @@
 $(document).ready(function() {
     var seconds = 1;
     var timer;
+    var difficulty;
     var menuPath = "images/menu/";
     var events = [];
     var board = document.querySelector("table");
@@ -34,6 +35,14 @@ $(document).ready(function() {
       grid: 36
     }
   ];
+
+  // gets difficulty level
+  $("button").on("click", function(){
+    $("tr").remove();
+    setTimer();
+    difficulty = $(event.target).attr("id");
+    makeBoard(level[difficulty]);
+  });
 
   // check to see if value has already been pulled form array
   function compare(num, array){
@@ -69,7 +78,6 @@ $(document).ready(function() {
     gameSquares.shuffled = shuffle(gameSquares.shuffled);
   }
 
-  makeBoard(level[1]);
   //perform action on clicked square
   board.addEventListener("click", timerClickEvent);
 
@@ -112,6 +120,10 @@ $(document).ready(function() {
   function reset(cells){
     alert("You win");
     cells.removeClass('flipped').css("background-image", "url(" + gameSquares.defaultSquare + ")");
+    setTimer();
+  }
+
+  function setTimer(){
     clearInterval(timer);
     seconds = 0;
     $("h1").text("Game Time: 0");
@@ -120,10 +132,10 @@ $(document).ready(function() {
 
   function checkSquareID(eventObject){
     var id = $(eventObject).attr('id') - 1;
-    if (id < level[1].grid/2){
+    if (id < level[difficulty].grid/2){
       return gameSquares.all[id];
     }else{
-      return gameSquares.shuffled[id-level[1].grid/2];
+      return gameSquares.shuffled[id-level[difficulty].grid/2];
     }
   }
 
