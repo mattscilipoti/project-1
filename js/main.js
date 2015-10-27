@@ -1,31 +1,61 @@
 $(document).ready(function() {
-    var seconds = 0;
+    var seconds = 1;
     var timer;
     var menuPath = "images/menu/";
     var events = [];
     var board = document.querySelector("table");
     var gameSquares = {
-      all : [menuPath + "Sandwich1.png", menuPath + "Burger2.png",menuPath + "Sandwich1.png", menuPath + "Burger2.png"],
+      all : [],
       defaultSquare : "images/McDonalds_golden_arch.png"
     } ;
 
+    var images = ["images/menu/Breakfast1.png", "images/menu/Breakfast2.png", "images/menu/Breakfast3.png", "images/menu/Burger1.png", "images/menu/Burger2.png", "images/menu/Burger3.png", "images/menu/Burger4.png", "images/menu/Coffee1.png", "images/menu/Coffee2.png", "images/menu/Drink1.png", "images/menu/Salad1.png", "images/menu/Sandwich1.png", "images/menu/Sandwich2.png", "images/menu/Sandwich3.png", "images/menu/Sandwich4.png", "images/menu/Side1.png", "images/menu/Side2.png", "images/menu/Side3.png"];
+
     var level = [{
       row: 2,
-      col: 2
+      col: 2,
+      grid: 4
     },{
       row: 4,
-      col: 4
+      col: 4,
+      grid: 16
     }, {
       row: 4,
-      col: 5
+      col: 5,
+      grid: 20
     },{
       row: 5,
-      col: 6
+      col: 6,
+      grid: 30
     },{
       row: 6,
-      col: 6
+      col: 6,
+      grid: 36
     }
   ];
+
+  // check to see if value has already been pulled form array
+  function compare(num, array){
+    if(array.indexOf(num) > -1) {
+      var num2 = images[Math.floor(Math.random() * images.length)];
+      compare(num2, array);
+    } else {
+      array.push(num);
+    }
+  }
+
+  function setImages(num){
+    var i = 0;
+    while(i < num.grid/2){
+      var rand = images[Math.floor(Math.random() * images.length)];
+      if(i === 0){
+        gameSquares.all.push(rand);
+      } else {
+        compare(rand, gameSquares.all);
+      }
+      i++;
+    }
+  }
 
   //create gameboard
   function makeBoard(size){
@@ -37,13 +67,17 @@ $(document).ready(function() {
         cellID++;
       }
     }
+    setImages(size);
+    console.log(gameSquares.all);
   }
 
-  makeBoard(level[0]);
+  makeBoard(level[1]);
   //perform action on clicked square
+  board.addEventListener("click", timerClickEvent);
   $("table").on("click", function(){
     var target = $(event.target);
     target.addClass('flipped').css('background-image', "url(" + checkSquareID(target) + ")");
+    console.log(target);
     events.push(target);
     checkSquareID(target);
 
@@ -59,7 +93,6 @@ $(document).ready(function() {
   });
 
 
-  board.addEventListener("click", timerClickEvent);
 
   var updateTimer = function () {
     $("h1").text('Game Time: ' + seconds);
@@ -86,7 +119,12 @@ $(document).ready(function() {
 
   function checkSquareID(eventObject){
     var id = $(eventObject).attr('id') - 1;
-    return gameSquares.all[id];
+    if (id < level[1].grid/2){
+      return gameSquares.all[id];
+    }else{
+      //shuffle gamesquares array
+      return gameSquares.all[id-level[1].grid/2];
+    }
   }
 
   function checkForMatch(eventsArray){
