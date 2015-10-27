@@ -37,11 +37,12 @@ $(document).ready(function() {
 
   // check to see if value has already been pulled form array
   function compare(num, array){
-    if(array.indexOf(num) > -1) {
+    if(array.all.indexOf(num) > -1) {
       var num2 = images[Math.floor(Math.random() * images.length)];
       compare(num2, array);
     } else {
-      array.push(num);
+      array.all.push(num);
+      array.shuffled.push(num);
     }
   }
 
@@ -49,7 +50,7 @@ $(document).ready(function() {
     var i = 0;
     while(i < num.grid/2){
       var rand = images[Math.floor(Math.random() * images.length)];
-      compare(rand, gameSquares.all);
+      compare(rand, gameSquares);
       i++;
     }
   }
@@ -65,13 +66,13 @@ $(document).ready(function() {
       }
     }
     setImages(size);
-    var tempArray = gameSquares.all;
-    console.log(tempArray);
-    // console.log(gameSquares.all);
-    // console.log(gameSquares.shuffled);
-    gameSquares.shuffled = shuffle(tempArray);
+
+    console.log(gameSquares.all);
+    console.log(gameSquares.shuffled);
+    gameSquares.shuffled = shuffle(gameSquares.shuffled);
     console.log(gameSquares.shuffled);
     console.log(gameSquares.all);
+
   }
 
   makeBoard(level[1]);
