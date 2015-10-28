@@ -39,7 +39,7 @@ $(document).ready(function() {
   ];
 
   //Show hide game rules
-  $(".start").on("click", function(){
+  $(".new").on("click", function(){
     gameRules();
     // newGame();
   });
@@ -50,7 +50,12 @@ $(document).ready(function() {
   });
 
   function gameRules(){
-    $(".rules").fadeToggle('fast');
+    $(".intro").fadeToggle('fast');
+  }
+
+  function results(time){
+    $(".stat-time").text(time);
+    $(".results").fadeToggle('slow');
   }
 
   // sets a new game
@@ -104,29 +109,30 @@ $(document).ready(function() {
   function gameClickEventHandler(){
     var target = $(event.target);
     console.log(target);
-    target.addClass('flipped').css('background-image', "url(" + checkSquareID(target) + ")");
-    events.push(target);
-    checkSquareID(target);
+    if (target.attr("class") != "main"){
+      target.addClass('flipped').css('background-image', "url(" + checkSquareID(target) + ")");
+      events.push(target);
+      checkSquareID(target);
 
-    if (events.length === 2){
-      board.removeEventListener("click", gameClickEventHandler);
-      setTimeout(function(){ // delay to show flip actions
-        var set = checkForMatch(events);
-        if (set === true){
-          events = [];
-          board.addEventListener("click", gameClickEventHandler);
-        } else {
-
-            events[0].removeClass('flipped').css("background-image", "url(" + gameSquares.defaultSquare + ")");
-            events[1].removeClass('flipped').css("background-image", "url(" + gameSquares.defaultSquare + ")");
+      if (events.length === 2){
+        board.removeEventListener("click", gameClickEventHandler);
+        setTimeout(function(){ // delay to show flip actions
+          var set = checkForMatch(events);
+          if (set === true){
             events = [];
+            board.addEventListener("click", gameClickEventHandler);
+          } else {
 
-          board.addEventListener("click", gameClickEventHandler);
-        }
-      }, 700);
+              events[0].removeClass('flipped').css("background-image", "url(" + gameSquares.defaultSquare + ")");
+              events[1].removeClass('flipped').css("background-image", "url(" + gameSquares.defaultSquare + ")");
+              events = [];
+
+            board.addEventListener("click", gameClickEventHandler);
+          }
+        }, 700);
+      }
+      endGame();
     }
-    endGame();
-
   }
 
   // updates game timer
@@ -154,7 +160,6 @@ $(document).ready(function() {
 
   function reset(cells){
     scoreBoard();
-    alert("You win");
     cells.removeClass('flipped').css("background-image", "url(" + gameSquares.defaultSquare + ")");
     $("table.main tr").remove();
     gameSquares.all = [];
@@ -173,7 +178,9 @@ $(document).ready(function() {
 
   function scoreBoard(){
     var timeTable = $(".slot");
-    timeTable.eq(game).html(minutes + ":" + (seconds-1));
+    var endTime = minutes + ":" + (seconds-1);
+    timeTable.eq(game).html(endTime);
+    results(endTime);
     game++;
     if (game === 4) {game = 0;}
 
