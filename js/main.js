@@ -38,20 +38,23 @@ $(document).ready(function() {
     }
   ];
 
+  $("#download a").on("click", function(){
+    $(".left").empty();
+    $(".left").append('<h2 class="msg">Play Again Tommorrow for a chance to win another coupon.</h2>');
+  });
+
   // play again button
   $(".again").on("click", function(){
-    // newGame();
     $(".results").fadeOut('fast');
   });
 
   // Show hide game rules
   $(".new").on("click", function(){
     gameRules();
-    // newGame();
   });
 
   // gets difficulty level
-  $(".menu button").on("click", function(){
+  $(".menu .button").on("click", function(){
     newGame();
   });
 
