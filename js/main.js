@@ -47,12 +47,13 @@ $(document).ready(function() {
 
   // play again button
   $(".again").on("click", function(){
-    $(".results").fadeOut('fast');
+    showResults();
   });
 
   // Show hide game rules
   $(".new").on("click", function(){
     gameRules();
+    showResults();
     $("table.main tr").remove();
   });
 
@@ -60,6 +61,10 @@ $(document).ready(function() {
   $(".menu .button").on("click", function(){
     newGame();
   });
+
+  function showResults(){
+    $(".results").fadeOut('fast');
+  }
 
   function gameRules(){
     $(".intro").fadeToggle('fast');
@@ -111,10 +116,15 @@ $(document).ready(function() {
       }
     }
     // scale grind smaller to keep in view
-    if (size.grid === 30 || size.grid === 36){
+    if (size.grid === 30){
       $("table.main td").css({
         "height": "90px",
         "width" : "90px"
+      });
+    } else if (size.grid === 36) {
+      $("table.main td").css({
+        "height": "80px",
+        "width" : "80px"
       });
     }
     setImages(size);
