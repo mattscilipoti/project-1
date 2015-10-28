@@ -2,18 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>McDonalds Menu Memory Game</title>
+  <title>McDonald's Menu Memory Game</title>
   <link href='https://fonts.googleapis.com/css?family=Raleway:400,100,500,700,300' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <header>
-    <h2>Title goes here</h2>
+    <h2><img src="images/McDonalds_golden_arch.png" alt="McDonalds logo">cDonald's Menu Memory Game</h2>
   </header>
   <div id="gameBoard">
     <div class="menu">
+
       <ul>
-      <h2>Choose <br>Difficulty</h2>
+        <h2>Choose <br>Difficulty</h2>
         <td><button id="0" class="button">test</button></td>
         <td><button id="1" class="button">Small</button></td>
         <td><button id="2" class="button">Medium</button></td>
@@ -42,6 +43,19 @@
           </tr>
         </table>
       </div>
+    </div>
+    <div class="rules">
+      <h2>Introduction</h2>
+      <p>Think you know all of McDonald's Menu offerings? Test your skills with this memory game and the head over to your local McDonald's for a victory snack.</p>
+
+      <h2>How to play?</h2>
+      <ol>
+        <li class="rules-list-item">Select you challenge difficulty</li>
+        <li class="rules-list-item">Click on TWO squares at a time to reveal contents and check for a match</li>
+        <li class="rules-list-item">If there is a match the squares will remain flipped </li>
+        <li class="rules-list-item">Successfully match all pairs in the table to win!</li>
+      </ol>
+      <button id="start">Start Game</button>
     </div>
     <table class="main"></table>
   </div>
