@@ -54,11 +54,13 @@ $(document).ready(function() {
   $(".new").on("click", function(){
     gameRules();
     showResults();
-    $("table.main tr").remove();
+    $("table.main tr").remove().fadeOut('fast');
   });
 
   // gets difficulty level
   $(".menu .button").on("click", function(){
+    var remove = true;
+    if ($(".intro").css('display', 'block')){gameRules(remove);}
     newGame();
   });
 
@@ -66,8 +68,14 @@ $(document).ready(function() {
     $(".results").fadeOut('fast');
   }
 
-  function gameRules(){
-    $(".intro").fadeToggle('fast');
+  function gameRules(val){
+    if (val == null) {
+      console.log("me");
+      $(".intro").fadeToggle('fast');
+    }else {
+      console.log("him");
+      $(".intro").hide();
+    }
   }
 
   function results(time){
@@ -77,7 +85,7 @@ $(document).ready(function() {
 
   // sets a new game
   function newGame(){
-    $("table.main tr").remove();
+    $("table.main tr").remove().fadeOut('fast');
     gameSquares.all = [];
     gameSquares.shuffled = [];
     setTimer();
@@ -199,7 +207,7 @@ $(document).ready(function() {
   function reset(cells){
     scoreBoard();
     cells.removeClass('flipped').css("background-image", "url(" + gameSquares.defaultSquare + ")");
-    $("table.main tr").remove();
+    $("table.main tr").remove().fadeOut('fast');
     gameSquares.all = [];
     gameSquares.shuffled = [];
     setTimer();
