@@ -39,16 +39,29 @@ $(document).ready(function() {
   ];
 
   //Show hide game rules
+  $(".start").on("click", function(){
+    gameRules();
+    // newGame();
+  });
 
   // gets difficulty level
   $(".menu button").on("click", function(){
+    newGame();
+  });
+
+  function gameRules(){
+    $(".rules").fadeToggle('fast');
+  }
+
+  // sets a new game
+  function newGame(){
     $("table.main tr").remove();
     gameSquares.all = [];
     gameSquares.shuffled = [];
     setTimer();
     difficulty = $(event.target).attr("id");
     makeBoard(level[difficulty]);
-  });
+  }
 
   // check to see if value has already been pulled form array
   function compare(num, array){
