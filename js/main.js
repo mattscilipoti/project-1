@@ -88,13 +88,14 @@ $(document).ready(function() {
 
   function gameClickEventHandler(){
     var target = $(event.target);
+    console.log(target);
     target.addClass('flipped').css('background-image', "url(" + checkSquareID(target) + ")");
     events.push(target);
     checkSquareID(target);
 
     if (events.length === 2){
       board.removeEventListener("click", gameClickEventHandler);
-      setTimeout(function(){
+      setTimeout(function(){ // delay to show flip actions
         var set = checkForMatch(events);
         if (set === true){
           events = [];
@@ -113,6 +114,7 @@ $(document).ready(function() {
 
   }
 
+  // updates game timer
   var updateTimer = function () {
     $("h1").text('Time: ' + minutes + ":" + seconds);
     seconds++;
@@ -127,6 +129,7 @@ $(document).ready(function() {
     board.removeEventListener("click", timerClickEvent);
   }
 
+  // Determines when the game is over and resets the board
   function endGame(){
     var allCells = $("table.main td");
     if(!$("table.main td").not(".flipped").length) {
@@ -138,7 +141,11 @@ $(document).ready(function() {
     scoreBoard();
     alert("You win");
     cells.removeClass('flipped').css("background-image", "url(" + gameSquares.defaultSquare + ")");
+    $("table.main tr").remove();
+    gameSquares.all = [];
+    gameSquares.shuffled = [];
     setTimer();
+    makeBoard(level[difficulty]);
   }
 
   function setTimer(){
@@ -153,9 +160,10 @@ $(document).ready(function() {
     var timeTable = $(".slot");
     timeTable.eq(game).html(minutes + ":" + (seconds-1));
     game++;
+    if (game === 4) {game = 0;}
 
   }
-
+  // gets the id of the click square and sets it bg image
   function checkSquareID(eventObject){
     var id = $(eventObject).attr('id') - 1;
     if (id < level[difficulty].grid/2){
@@ -165,6 +173,7 @@ $(document).ready(function() {
     }
   }
 
+  // checks bg-image for a match
   function checkForMatch(eventsArray){
     if (eventsArray[0].css("background-image") === eventsArray[1].css("background-image")){
       return true;
@@ -173,6 +182,7 @@ $(document).ready(function() {
     }
   }
 
+  //shuffles second image array
   function shuffle(array) {
    var j, k;
    var temp;
