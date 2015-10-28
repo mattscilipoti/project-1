@@ -51,6 +51,7 @@ $(document).ready(function() {
   // Show hide game rules
   $(".new").on("click", function(){
     gameRules();
+    $("table.main tr").remove();
   });
 
   // gets difficulty level
@@ -106,6 +107,13 @@ $(document).ready(function() {
         $("#row" + (i+1)).append('<td id="' + cellID + '"></td>');
         cellID++;
       }
+    }
+    // scale grind smaller to keep in view
+    if (size.grid === 30 || size.grid === 36){
+      $("table.main td").css({
+        "height": "90px",
+        "width" : "90px"
+      });
     }
     setImages(size);
     gameSquares.shuffled = shuffle(gameSquares.shuffled);
