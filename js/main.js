@@ -13,6 +13,8 @@ $(document).ready(function() {
       defaultSquare : "images/McDonalds_golden_arch.png"
     } ;
 
+    var soundBank = ["audio/correct.mp3", "audio/buzz.mp3", "audio/flip.mp3", "audio/love.mp3"];
+
     var images = ["images/menu/Breakfast1.png", "images/menu/Breakfast2.png", "images/menu/Breakfast3.png", "images/menu/Burger1.png", "images/menu/Burger2.png", "images/menu/Burger3.png", "images/menu/Burger4.png", "images/menu/Coffee1.png", "images/menu/Coffee2.png", "images/menu/Drink1.png", "images/menu/Salad1.png", "images/menu/Sandwich1.png", "images/menu/Sandwich2.png", "images/menu/Sandwich3.png", "images/menu/Sandwich4.png", "images/menu/Side1.png", "images/menu/Side2.png", "images/menu/Side3.png"];
 
     var level = [{
@@ -128,6 +130,8 @@ $(document).ready(function() {
     console.log(target);
     if (target.attr("class") != "main"){
       target.addClass('flipped').css('background-image', "url(" + checkSquareID(target) + ")");
+      var flipSnd = new Audio(soundBank[2]);
+      flipSnd.play();
       events.push(target);
       checkSquareID(target);
 
@@ -137,9 +141,14 @@ $(document).ready(function() {
           var set = checkForMatch(events);
           if (set === true){
             events = [];
+            if($("table.main td").not(".flipped").length > 1) {
+              var correctSnd = new Audio(soundBank[0]);
+              correctSnd.play();
+            }
             board.addEventListener("click", gameClickEventHandler);
           } else {
-
+              var buzzSnd = new Audio(soundBank[1]);
+              buzzSnd.play();
               events[0].removeClass('flipped').css("background-image", "url(" + gameSquares.defaultSquare + ")");
               events[1].removeClass('flipped').css("background-image", "url(" + gameSquares.defaultSquare + ")");
               events = [];
@@ -171,6 +180,8 @@ $(document).ready(function() {
   function endGame(){
     var allCells = $("table.main td");
     if(!$("table.main td").not(".flipped").length) {
+      var loveSnd = new Audio(soundBank[3]);
+      loveSnd.play();
       reset(allCells);
     }
   }
