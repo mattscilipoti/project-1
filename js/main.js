@@ -84,25 +84,34 @@ $(document).ready(function() {
 
   //perform action on clicked square
   board.addEventListener("click", timerClickEvent);
+  board.addEventListener("click", gameClickEventHandler);
 
-  $("table").on("click", function(){
+  function gameClickEventHandler(){
     var target = $(event.target);
     target.addClass('flipped').css('background-image', "url(" + checkSquareID(target) + ")");
-    // console.log(target);
     events.push(target);
     checkSquareID(target);
 
     if (events.length === 2){
-
+      board.removeEventListener("click", gameClickEventHandler);
       setTimeout(function(){
-        checkForMatch(events);
-      }, 1300);
+        var set = checkForMatch(events);
+        if (set === true){
+          events = [];
+          board.addEventListener("click", gameClickEventHandler);
+        } else {
+
+            events[0].removeClass('flipped').css("background-image", "url(" + gameSquares.defaultSquare + ")");
+            events[1].removeClass('flipped').css("background-image", "url(" + gameSquares.defaultSquare + ")");
+            events = [];
+
+          board.addEventListener("click", gameClickEventHandler);
+        }
+      }, 700);
     }
     endGame();
 
-  });
-
-
+  }
 
   var updateTimer = function () {
     $("h1").text('Time: ' + minutes + ":" + seconds);
@@ -158,12 +167,9 @@ $(document).ready(function() {
 
   function checkForMatch(eventsArray){
     if (eventsArray[0].css("background-image") === eventsArray[1].css("background-image")){
-      events = [];
-
+      return true;
     } else {
-      eventsArray[0].removeClass('flipped').css("background-image", "url(" + gameSquares.defaultSquare + ")");
-      eventsArray[1].removeClass('flipped').css("background-image", "url(" + gameSquares.defaultSquare + ")");
-      events = [];
+      return false;
     }
   }
 
