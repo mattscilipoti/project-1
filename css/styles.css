@@ -161,6 +161,7 @@ div.times  td {
 }
 
 .start, .button {
+  cursor: pointer;
   padding:15px;
 	width:150px;
   margin: 15px 0px;
@@ -251,6 +252,15 @@ div.times  td {
 
 .small {
   font-size: 0.7em;
+}
+
+#download {
+  cursor: default;
+}
+.start a {
+  text-decoration: none;
+  text-shadow: none;
+  color: #ffc300;
 }
 /*red #dd1021
 yellow #ffc300*/
