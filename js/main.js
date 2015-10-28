@@ -1,10 +1,12 @@
 $(document).ready(function() {
-    var seconds = 1;
+    var seconds = 0;
+    var minutes = 0;
     var timer;
+    var game = 0;
     var difficulty;
     var menuPath = "images/menu/";
     var events = [];
-    var board = document.querySelector("table");
+    var board = document.querySelector("table.main");
     var gameSquares = {
       all : [],
       shuffled : [],
@@ -38,7 +40,9 @@ $(document).ready(function() {
 
   // gets difficulty level
   $("button").on("click", function(){
-    $("tr").remove();
+    $("table.main tr").remove();
+    gameSquares.all = [];
+    gameSquares.shuffled = [];
     setTimer();
     difficulty = $(event.target).attr("id");
     makeBoard(level[difficulty]);
@@ -68,7 +72,7 @@ $(document).ready(function() {
   function makeBoard(size){
     cellID = 1;
     for (var i = 0; i < size.row; i++) {
-      $("table").append('<tr id="row' + (i+1) + '"></tr>');
+      $("table.main").append('<tr id="row' + (i+1) + '"></tr>');
       for (var j = 0; j < size.col; j++) {
         $("#row" + (i+1)).append('<td id="' + cellID + '"></td>');
         cellID++;
@@ -101,8 +105,12 @@ $(document).ready(function() {
 
 
   var updateTimer = function () {
-    $("h1").text('Game Time: ' + seconds);
+    $("h1").text('Time: ' + minutes + ":" + seconds);
     seconds++;
+    if (seconds % 60 === 0 ){
+       minutes++;
+       seconds = 0;
+    }
   };
 
   function timerClickEvent(){
@@ -111,13 +119,14 @@ $(document).ready(function() {
   }
 
   function endGame(){
-    var allCells = $("td");
-    if(!$("td").not(".flipped").length) {
+    var allCells = $("table.main td");
+    if(!$("table.main td").not(".flipped").length) {
       reset(allCells);
     }
   }
 
   function reset(cells){
+    scoreBoard();
     alert("You win");
     cells.removeClass('flipped').css("background-image", "url(" + gameSquares.defaultSquare + ")");
     setTimer();
@@ -125,9 +134,17 @@ $(document).ready(function() {
 
   function setTimer(){
     clearInterval(timer);
-    seconds = 0;
-    $("h1").text("Game Time: 0");
+    seconds = 1;
+    minutes = 0;
+    $("h1").text("Time: 0:0");
     board.addEventListener("click", timerClickEvent);
+  }
+
+  function scoreBoard(){
+    var timeTable = $(".slot");
+    timeTable.eq(game).html(minutes + ":" + (seconds-1));
+    game++;
+
   }
 
   function checkSquareID(eventObject){

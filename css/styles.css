@@ -1,3 +1,17 @@
+
+@font-face {
+    font-family: 'comboregular';
+    src: url('../fonts/combo-regular-webfont.eot');
+    src: url('../fonts/combo-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/combo-regular-webfont.woff2') format('woff2'),
+         url('../fonts/combo-regular-webfont.woff') format('woff'),
+         url('../fonts/combo-regular-webfont.ttf') format('truetype'),
+         url('../fonts/combo-regular-webfont.svg#comboregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 * {
   font-family: 'Raleway', sans-serif;
 }
@@ -47,6 +61,7 @@ ul {
   position: relative;
   top:90px;
 }
+
 .button {
   padding: 15px 10px;
   margin-bottom: 5px;
@@ -61,12 +76,40 @@ ul {
 }
 
 .scoreBoard {
-  position: relative;
-  top: -300px;
+  position: absolute;
+  top: 100px;
+  right: 0;
   float: right;
   margin-right: 50px;
 }
 
 .scoreBoard h1 {
   font-size: 45px;
+}
+
+div.times > table {
+  margin: 0;
+  position: relative;
+  top: 10px;
+  left: 0px;
+  border-collapse: collapse;
+  text-align: center;
+  font-weight: bold;
+  font-size: 50px;
+  color: #f1c40f;
+}
+
+div.times  td {
+  height: 75px;
+  width: 300px;
+  margin: 0;
+  padding: 0;
+  border: 7px solid #A36024;
+  box-shadow: none;
+  background: none;
+}
+
+.title {
+  font-family: 'comboregular';
+
 }
