@@ -38,7 +38,13 @@ $(document).ready(function() {
     }
   ];
 
-  //Show hide game rules
+  // play again button
+  $(".again").on("click", function(){
+    // newGame();
+    $(".results").fadeOut('fast');
+  });
+
+  // Show hide game rules
   $(".new").on("click", function(){
     gameRules();
     // newGame();
@@ -55,7 +61,7 @@ $(document).ready(function() {
 
   function results(time){
     $(".stat-time").text(time);
-    $(".results").fadeToggle('slow');
+    $(".results").fadeIn('slow');
   }
 
   // sets a new game
@@ -165,7 +171,6 @@ $(document).ready(function() {
     gameSquares.all = [];
     gameSquares.shuffled = [];
     setTimer();
-    makeBoard(level[difficulty]);
   }
 
   function setTimer(){
