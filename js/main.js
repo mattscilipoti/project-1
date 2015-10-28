@@ -70,10 +70,8 @@ $(document).ready(function() {
 
   function gameRules(val){
     if (val == null) {
-      console.log("me");
       $(".intro").fadeToggle('fast');
     }else {
-      console.log("him");
       $(".intro").hide();
     }
   }

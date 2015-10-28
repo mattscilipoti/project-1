@@ -281,5 +281,15 @@ footer {
   text-align: center;
 }
 
+.icons {
+  display: inline-block;
+  height: 25px;
+  width: 25px;
+}
+
+.copy {
+  margin-bottom: 5px;
+}
+
 /*red #dd1021
 yellow #ffc300*/
