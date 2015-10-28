@@ -38,8 +38,10 @@ $(document).ready(function() {
     }
   ];
 
+  //Show hide game rules
+
   // gets difficulty level
-  $("button").on("click", function(){
+  $(".menu button").on("click", function(){
     $("table.main tr").remove();
     gameSquares.all = [];
     gameSquares.shuffled = [];
