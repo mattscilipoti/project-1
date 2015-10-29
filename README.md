@@ -40,18 +40,26 @@ Now that I have my theme I needed to find a way to make this relevant to their b
 - Professional design with animations
 
 ##Inspiration
-Outside of the obvious I was inspired by the viral campaign that launched mid 2015 for movie straight outta compton (http://straightouttasomewhere.com). I really liked how a simple program that just takes an input and places it on a simple background that you could share on social media made a huge impact on pop culture for a few weeks. If you scroll further on the website you can see musicians, actors, and athletes all participating in the campaign.
-So I wanted this game to act as a simple product that aids in the promotion of McDonald's in a similar way that campaign did for the movie.
+Outside of the obvious I was inspired by the viral campaign that launched mid 2015 for movie straight outta Compton (http://straightouttasomewhere.com). I really liked how a simple program that just takes an input and places it on a simple background that you could share on social media made a huge impact on pop culture for a few weeks. If you scroll further on the website you can see musicians, actors, and athletes all participating in the campaign. So I wanted this game to act as a simple product that aids in the promotion of McDonald's in a similar way that campaign did for the movie.
 
 ##Technologies Used
-- Vannilla JS
+- Javascript
 - JQuery
 - Google fonts
 - HTML
 - CSS
+- Trello (project management)
 
 ##Approach
-To start I used my tic-tac-toe as a base for my project and then start small to achieve my bronze MVP. Starting with just 4 squares I built all of my game logic and scaled up from there.
+To start I used my tic-tac-toe game as a base for my project and then started small to achieve my bronze MVP. Starting with just 4 squares I built all of my game logic and scaled up from there.
+
+##Future Development
+Some things I did not get to complete are:
+- add advertisements
+- parse the completed game times and store them in the best times table
+- store values in the browsers cashed memory so the best times stay in the table when you navigate away from the page
 
 ##Contributors
 Everyone in my class (class 5) for allowing me to bounce ideas off them as well sharing their code to view how others solve similar problems.
+
+Britton Walker (Designer) [https://github.com/brittonwalker] - Helped with background graphics.
