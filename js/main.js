@@ -18,7 +18,7 @@ $(document).ready(function() {
     var images = ["images/menu/Breakfast1.png", "images/menu/Breakfast2.png", "images/menu/Breakfast3.png", "images/menu/Burger1.png", "images/menu/Burger2.png", "images/menu/Burger3.png", "images/menu/Burger4.png", "images/menu/Coffee1.png", "images/menu/Coffee2.png", "images/menu/Drink1.png", "images/menu/Salad1.png", "images/menu/Sandwich1.png", "images/menu/Sandwich2.png", "images/menu/Sandwich3.png", "images/menu/Sandwich4.png", "images/menu/Side1.png", "images/menu/Side2.png", "images/menu/Side3.png"];
 
     var level = [{
-      row: 2,
+      row: 2, // test grid
       col: 2,
       grid: 4
     },{
@@ -42,7 +42,7 @@ $(document).ready(function() {
 
   $("#download a").on("click", function(){
     $(".left").empty();
-    $(".left").append('<h2 class="msg">Play Again Tommorrow for a chance to win another coupon.</h2>');
+    $(".left").append('<h2 class="msg">Play Again Tomorrow for a chance to win another coupon.</h2>');
   });
 
   // play again button
@@ -61,6 +61,7 @@ $(document).ready(function() {
   $(".menu .button").on("click", function(){
     var remove = true;
     if ($(".intro").css('display', 'block')){gameRules(remove);}
+    showResults();
     newGame();
   });
 
