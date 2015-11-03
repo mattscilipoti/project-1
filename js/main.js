@@ -5,6 +5,7 @@ $(document).ready(function() {
     var game = 0;
     var difficulty;
     var menuPath = "images/menu/";
+    // mms: recommend another name (selectedCards, selectedSquares?), "event" has specific meaning
     var events = [];
     var board = document.querySelector("table.main");
     var gameSquares = {
@@ -13,10 +14,12 @@ $(document).ready(function() {
       defaultSquare : "images/McDonalds_golden_arch.png"
     } ;
 
+    // mss: recommend using hash/object here, so we can access each file by label, instead of index.
     var soundBank = ["audio/correct.mp3", "audio/buzz.mp3", "audio/flip.mp3", "audio/love.mp3"];
 
     var images = ["images/menu/Breakfast1.png", "images/menu/Breakfast2.png", "images/menu/Breakfast3.png", "images/menu/Burger1.png", "images/menu/Burger2.png", "images/menu/Burger3.png", "images/menu/Burger4.png", "images/menu/Coffee1.png", "images/menu/Coffee2.png", "images/menu/Drink1.png", "images/menu/Salad1.png", "images/menu/Sandwich1.png", "images/menu/Sandwich2.png", "images/menu/Sandwich3.png", "images/menu/Sandwich4.png", "images/menu/Side1.png", "images/menu/Side2.png", "images/menu/Side3.png"];
 
+    // mms: recommend calculating grid from row*col, to minimize opportunity for error.  Allows for easier expansion.
     var level = [{
       row: 2, // test grid
       col: 2,
@@ -70,6 +73,7 @@ $(document).ready(function() {
   }
 
   function gameRules(val){
+    // mms: use === to compare null
     if (val == null) {
       $(".intro").fadeToggle('fast');
     }else {
@@ -142,7 +146,8 @@ $(document).ready(function() {
   board.addEventListener("click", timerClickEvent);
   board.addEventListener("click", gameClickEventHandler);
 
-  function gameClickEventHandler(){
+  // mms: event should be passed as argument (event handler passes it when it calls the callback)
+  function gameClickEventHandler(event){
     var target = $(event.target);
     console.log(target);
     if (target.attr("class") != "main"){
@@ -154,6 +159,9 @@ $(document).ready(function() {
 
       if (events.length === 2){
         board.removeEventListener("click", gameClickEventHandler);
+        // mms: recommend using a named function with setTimeout
+        // setTimeout(doSomething, delay)
+        // the delay isn't lost 20 lines below.
         setTimeout(function(){ // delay to show flip actions
           var set = checkForMatch(events);
           if (set === true){
